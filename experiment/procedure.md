@@ -16,7 +16,7 @@ When the metal and the semicondutor are electrically connected, electrons flow f
 
 $$ V_{bi} = \Phi_m - \Phi_s $$
 
-The work function of a semiconductor depends on the electron affinity χsχs\\chi\_s and the doping, 
+The work function of a semiconductor depends on the electron affinity χ<sub>s</sub> and the doping, 
 
 $$ \Phi_s = \chi_s + (E_c - E_F) $$
 

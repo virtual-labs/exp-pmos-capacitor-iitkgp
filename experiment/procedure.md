@@ -14,8 +14,8 @@ The - and + buttons change the gate voltage by ±0.01±0.01\\pm 0.01 V.
 
 When the metal and the semicondutor are electrically connected, electrons flow from the material with a low work function to the material with a high work function. This current flow stops when a built-in voltage is established that is equal to the work function difference, 
 
-$$Vbi=ϕm−ϕsVbi=ϕm−ϕsV_{bi}=\phi_m-\phi_s$$.
+$$V_{bi} = \Phi_m - \Phi_s V_{bi} = \Phi_m - \Phi_s$$ 
 
 The work function of a semiconductor depends on the electron affinity χsχs\\chi\_s and the doping, 
 
-$$ϕs=χs+Ec−EFϕs=χs+Ec−EF\phi_s=\chi_s+E_c-E_F$$.
+$$\Phi_s = \chi_s + E_c - E_F \Phi_s = \chi_s + E_c - E_F$$

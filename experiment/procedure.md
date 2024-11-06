@@ -1,9 +1,9 @@
 ## Procedure
-
+<div align="center">
 <img src="images/peq.jpg"  />
   
 **Fig. 1. Gradual channel approximation**
-
+</div>
   
 
 **Steps to perform the real measurement in HP 4145B Semiconductor Parameter Analyzer**  

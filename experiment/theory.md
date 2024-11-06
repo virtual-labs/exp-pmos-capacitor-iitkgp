@@ -1,9 +1,12 @@
 ## Theory
 **Introduction:**  
 The boundary between accumulation and depletion is the flat-band voltage and the boundary between depletion and inversion is the threshold voltage.
+<div align="center">
+    <img src="images/tvic.jpg" alt="Threshold Voltage and Inversion charge">  
+      <p><strong>Fig. 1. Threshold Voltage and Inversion charge</strong></p>
+</div>
 
-![](./images/tvic.jpg)  
-**Fig. 1. Threshold Voltage and Inversion charge**
+
 
   
 

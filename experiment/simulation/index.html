@@ -30,6 +30,125 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
    
     <script src="./js/jquery.flot.min.js"></script>
+
+
+
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+      .form-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      td {
+        padding: 10px;
+        text-align: right;
+      }
+      td:nth-child(2n) {
+        text-align: left;
+        padding-left: 5px;
+      }
+      input[type="text"] {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="button"] {
+        padding: 8px 12px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      input[type="button"]:hover {
+        background-color: #0056b3;
+      }
+      .button-group {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .button-group input[type="button"] {
+        margin: 5px;
+      }
+      .material-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .material-buttons input[type="button"] {
+        background-color: #28a745;
+      }
+      .material-buttons input[type="button"]:hover {
+        background-color: #218838;
+      }
+      .voltage-control {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .voltage-control input[type="button"] {
+        background-color: #dc3545;
+      }
+      .voltage-control input[type="button"]:hover {
+        background-color: #c82333;
+      }
+
+
+      .table-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+    td p {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    td span {
+      margin-left: 5px;
+    }
+    .math {
+      font-family: "Times New Roman", serif;
+      font-style: italic;
+    }
+    .flex-container {
+      display: flex;
+      align-items: center;
+    }
+    .center-text {
+      text-align: center;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .value {
+      font-weight: bold;
+      color: #007bff;
+    }
+    </style>
+
   </head>
 <body><!--body tag start-->
     
@@ -44,44 +163,42 @@
               <div id="inst" style="display:block;height:200px;overflow-y:auto;text-align:justify">
 					
 					<!-- INSRTUCTION START -->
-				
-	<ol>
+          <ol>
     
-					<h4>Input Parameters</h4>
-					<ul>
-						<li><strong>ϕm, ϕs (Work Function of the Metal and Semiconductor):</strong> Enter the values in electron volts (eV).</li>
-						<li><strong>χ (Electron Affinity):</strong> Enter the electron affinity in eV.</li>
-						<li><strong>tox, tox2 (Oxide Thickness):</strong> Enter the oxide thickness in nanometers (nm).</li>
-						<li><strong>εox, εox2 (Dielectric Constants of the Oxides):</strong> Enter the dielectric constants.</li>
-						<li><strong>Eg (Bandgap Energy):</strong> Enter the bandgap energy using the provided formula if needed.</li>
-						<li><strong>Nd (Donor Concentration)</strong> and <strong>Na (Acceptor Concentration):</strong> Enter the concentration values in cm³.</li>
-						<li><strong>T (Temperature):</strong> Enter the operating temperature in Kelvin (K).</li>
-						<li><strong>εsemi (Semiconductor Dielectric Constant):</strong> Enter the value.</li>
-						<li><strong>V (Voltage):</strong> Input the voltage applied across the device.</li>
-						<li><strong>Material Selection (Si, Ge, GaAs):</strong> Choose the material of the semiconductor.</li>
-					</ul>
-
-					<h4>Submit</h4>
-					<p>Once all parameters are entered, click the <strong>Submit</strong> button to run the simulation.</p>
-
-					<h4>View Results</h4>
-					<ul>
-						<li><strong>Band Diagram:</strong> Observe the energy levels within the semiconductor, including the conduction band edge, valence band edge, and Fermi level.</li>
-						<li><strong>Charge Density:</strong> View the distribution of charge across the semiconductor, including the contributions from different carriers (e.g., holes, electrons).</li>
-						<li><strong>Electric Field:</strong> Analyze the electric field across the device as a function of position.</li>
-					</ul>
-
-					<h4>Explore Different Regions</h4>
-					<p>Use the <strong>Accumulation</strong>, <strong>Flatband</strong>, <strong>Depletion</strong>, <strong>Threshold</strong>, and <strong>Inversion</strong> buttons to explore different operational regions of the PMOS transistor.</p>
-
-					<h4>Additional Notes</h4>
-					<ul>
-						<li>The right side of the screen displays calculated parameters such as the built-in potential (ϕs), maximum depletion width (xP), surface potential (ψs), and threshold voltage (VT).</li>
-						<li>The calculated charge (Q) and electric field (Eox) in the oxide layer are also shown.</li>
-						<li>Make sure to adjust and explore the parameters to see how they affect the band diagram, charge density, and electric field.</li>
-					</ul>
-   
-	</ol>
+            <h4>Input Parameters</h4>
+            <ul>
+              <li><strong>ϕm, ϕs (Work Function of the Metal and Semiconductor):</strong> Enter the values in electron volts (eV).</li>
+              <li><strong>χ (Electron Affinity):</strong> Enter the electron affinity in eV.</li>
+              <li><strong>tox, tox2 (Oxide Thickness):</strong> Enter the oxide thickness in nanometers (nm).</li>
+              <li><strong>εox, εox2 (Dielectric Constants of the Oxides):</strong> Enter the dielectric constants.</li>
+              <li><strong>Eg (Bandgap Energy):</strong> Enter the bandgap energy using the provided formula if needed.</li>
+              <li><strong>Nd (Donor Concentration)</strong> and <strong>Na (Acceptor Concentration):</strong> Enter the concentration values in cm³.</li>
+              <li><strong>T (Temperature):</strong> Enter the operating temperature in Kelvin (K).</li>
+              <li><strong>εsemi (Semiconductor Dielectric Constant):</strong> Enter the value.</li>
+              <li><strong>V (Voltage):</strong> Input the voltage applied across the device.</li>
+              <li><strong>Material Selection (Si, Ge, GaAs):</strong> Choose the material of the semiconductor.</li>
+            </ul>
+  
+            <h4>Submit</h4>
+            <p>Once all parameters are entered, click the <strong>Submit</strong> button to run the simulation.</p>
+  
+            <h4>View Results</h4>
+            <ul>
+              <li><strong>Band Diagram:</strong> Observe the energy levels within the semiconductor, including the conduction band edge, valence band edge, and Fermi level.</li>
+              
+            </ul>
+  
+            <h4>Explore Different Regions</h4>
+            <p>Use the <strong>Accumulation</strong>, <strong>Flatband</strong>, <strong>Depletion</strong>, <strong>Threshold</strong>, and <strong>Inversion</strong> buttons to explore different operational regions of the PMOS transistor.</p>
+  
+            <h4>Additional Notes</h4>
+            <ul>
+              <li>The right side of the screen displays calculated parameters such as the built-in potential (ϕs), maximum depletion width (xP), surface potential (ψs), and threshold voltage (VT).</li>
+              <li>The calculated charge (Q) and electric field (Eox) in the oxide layer are also shown.</li>
+              <li>Make sure to adjust and explore the parameters to see how they affect the band diagram, charge density, and electric field.</li>
+            </ul>
+     
+    </ol>
 				<!-- INSTRUCTION STOP -->	
 					
 		   </div>
@@ -320,138 +437,72 @@ h2 {margin-left:1cm;}
   
 
 
+<div class="form-container">
+  <form name="data">
+    <table>
+      <tr>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϕ</mi><mi>m</mi></msub></math> =</td>
+        <td><input type="text" name="phi_m" size="10" value="4.08" spellcheck="false"></td>
+        <td>eV</td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>χ</mi><mi>s</mi></msub></math> =</td>
+        <td><input type="text" name="chi_s" size="10" value="4.05" spellcheck="false"></td>
+        <td>eV</td>
+      </tr>
+      <tr>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math> =</td>
+        <td><input type="text" name="tox" size="10" value="3" spellcheck="false"></td>
+        <td>nm</td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϵ</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math> =</td>
+        <td><input type="text" name="eps_ox" size="10" value="4" spellcheck="false"></td>
+        <td></td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>c</mi></msub><mo>(</mo><mn>300</mn><mo>)</mo></math> =</td>
+        <td><input type="text" name="Nc" size="10" value="2.78E19" spellcheck="false"></td>
+        <td>1/cm³</td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>T</mi></math> =</td>
+        <td><input type="text" name="T" size="10" value="300" spellcheck="false"></td>
+        <td>K</td>
+      </tr>
+      <tr>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>E</mi><mi>g</mi></msub></math> =</td>
+        <td><input type="text" name="Eg" size="25" value="1.166-4.73E-4*T*T/(T+636)" spellcheck="false"></td>
+        <td>eV</td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϵ</mi><mrow><mi>s</mi><mi>e</mi><mi>m</mi><mi>i</mi></mrow></msub></math> =</td>
+        <td><input type="text" name="eps" size="10" value="12" spellcheck="false"></td>
+        <td></td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>v</mi></msub><mo>(</mo><mn>300</mn><mo>)</mo></math> =</td>
+        <td><input type="text" name="Nv" size="10" value="9.84E18" spellcheck="false"></td>
+        <td>1/cm³</td>
+        <td><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>A</mi></msub></math> =</td>
+        <td><input type="text" name="na" size="10" value="1E17" spellcheck="false"></td>
+        <td>1/cm³</td>
+      </tr>
+    </table>
 
-<form name="data">
-<table style="border-collapse:collapse" align="center">
-<tbody><tr>
-  <td style="text-align: right;">
-    <p class="t">
-      <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>&#x03D5;</mi><mi>m</mi></msub></math>">
-        <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϕ</mi><mi>m</mi></msub></math>
-      </span>
-      = <input type="text" name="phi_m" size="10" value="4.08" spellcheck="false">
-    </p>
-  </td>
-  <td>eV</td>
-
-  <td style="text-align: right;">
-    <p class="t">
-      <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>&#x03C7;</mi><mi>s</mi></msub></math>">
-        <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>χ</mi><mi>s</mi></msub></math>
-      </span>
-      = <input type="text" name="chi_s" size="10" value="4.05" spellcheck="false">
-    </p>
-  </td>
-  <td>eV</td>
-</tr>
-
-<tr><td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>t</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math>
-    </span>
-    = <input type="text" name="tox" size="10" value="3" spellcheck="false">
-  </p>
-</td>
-<td>nm</td>
-
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>ϵ</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϵ</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub></math>
-    </span>
-    = <input type="text" name="eps_ox" size="10" value="4" spellcheck="false">
-  </p>
-</td>
-<td></td>
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>N</mi><mi>c</mi></msub><mo>(</mo><mn>300</mn><mo>)</mo></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>c</mi></msub><mo>(</mo><mn>300</mn><mo>)</mo></math>
-    </span>
-    = <input type="text" name="Nc" size="10" value="2.78E19" spellcheck="false">
-  </p>
-</td>
-<td>1/cm³</td>
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><mi>T</mi></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>T</mi></math>
-    </span>
-    = <input type="text" name="T" size="10" value="300" spellcheck="false">
-  </p>
-</td>
-<td>K</td>
-</tr>
-
-<tr>
-  <td style="text-align: right;">
-    <p class="t">
-      <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>E</mi><mi>g</mi></msub></math>">
-        <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>E</mi><mi>g</mi></msub></math>
-      </span>
-      = <input type="text" name="Eg" size="25" value="1.166-4.73E-4*T*T/(T+636)" spellcheck="false">
-    </p>
-  </td>
-  <td>eV</td>
-</tr>
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>ϵ</mi><mrow><mi>s</mi><mi>e</mi><mi>m</mi><mi>i</mi></mrow></msub></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ϵ</mi><mrow><mi>s</mi><mi>e</mi><mi>m</mi><mi>i</mi></mrow></msub></math>
-    </span>
-    = <input type="text" name="eps" size="10" value="12" spellcheck="false">
-  </p>
-</td>
-<td></td>
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>N</mi><mi>v</mi></msub><mo>(</mo><mn>300</mn><mo>)</mo></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>v</mi></msub>(300)</math>
-    </span>
-    = <input type="text" name="Nv" size="10" value="9.84E18" spellcheck="false">
-  </p>
-</td>
-<td>1/cm³</td>
-
-<td style="text-align: right;">
-  <p class="t">
-    <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mi>N</mi><mi>A</mi></msub></math>">
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>N</mi><mi>A</mi></msub></math>
-    </span>
-    = <input type="text" name="na" size="10" value="1E17" spellcheck="false">
-  </p>
-</td>
-<td>1/cm³</td>
-
-</tbody></table>
-
-<table style="border-collapse: collapse; margin: auto;">
-  <tbody>
-    <tr>
-      <td style="text-align: center;">
-        <span class="MathJax" data-mathml="<math xmlns='http://www.w3.org/1998/Math/MathML'><mi>V</mi></math>">
-          <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>V</mi></math>
-        </span>
-        = <input type="text" name="V" size="10" value="0" spellcheck="false"> V 
-        <br> 
+    <div class="button-group">
+      <div class="voltage-control">
+        <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>V</mi></math> = 
+        <input type="text" name="V" size="10" value="0" spellcheck="false"> V 
         <input type="button" value="-" onclick="data.V.value = (parseFloat(data.V.value) - 0.01).toFixed(2); moscap();">
         <input type="button" value="+" onclick="data.V.value = (parseFloat(data.V.value) + 0.01).toFixed(2); moscap();">
-      </td>
-      <td style="text-align: center;">
-        <input type="button" value="Submit" onclick="moscap();">
-        <input type="button" value=" Si " onclick="setMaterial('Si');">
-        <input type="button" value=" Ge " onclick="setMaterial('Ge');">
-        <input type="button" value="GaAs" onclick="setMaterial('GaAs');">
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+      <input type="button" value="Submit" onclick="moscap();">
+    </div>
+
+    <div class="material-buttons">
+      <input type="button" value=" Si " onclick="setMaterial('Si');">
+      <input type="button" value=" Ge " onclick="setMaterial('Ge');">
+      <input type="button" value="GaAs" onclick="setMaterial('GaAs');">
+    </div>
+
+    <div class="button-group">
+      <input type="button" value="Accumulation" onclick="setVoltage(Vfb - 0.2);">
+      <input type="button" value="Flatband" onclick="setVoltage(Vfb);">
+      <input type="button" value="Depletion" onclick="setVoltage(0.5 * (VT + 2 * Vfb));">
+      <input type="button" value="Threshold" onclick="setVoltage(VT + Vfb);">
+      <input type="button" value="Inversion" onclick="setVoltage(VT + Vfb + 0.2);">
+    </div>
+  </form>
+</div>
 
 <script>
   function setMaterial(material) {
@@ -483,23 +534,12 @@ h2 {margin-left:1cm;}
     data.Eg.value = Eg;
     moscap();
   }
-</script>
- 
-<p style="text-align:center">
-  <input type="button" value="Accumulation" onclick="setVoltage(Vfb - 0.2);">
-  <input type="button" value="Flatband" onclick="setVoltage(Vfb);">
-  <input type="button" value="Depletion" onclick="setVoltage(0.5 * (VT + 2 * Vfb));">
-  <input type="button" value="Threshold" onclick="setVoltage(VT + Vfb);">
-  <input type="button" value="Inversion" onclick="setVoltage(VT + Vfb + 0.2);">
-</p>
 
-<script>
   function setVoltage(value) {
     data.V.value = value;
     moscap();
   }
 </script>
-</form>
 
 <table align="center"><tbody><tr><td>
 
@@ -580,261 +620,112 @@ h2 {margin-left:1cm;}
 
 </td><td>
 
-<table align="center"><tbody>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            E<sub>g</sub> = 
-            <span id="Eg_txt">1.12</span>&nbsp;eV
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            n<sub>i</sub> = 
-            <span id="ni_txt">6.40e+9</span>&nbsp;1/cm³
-        </p>
-    </td>
-</tr>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-17" role="presentation">E<sub>s</sub> =</span>
-            <span id="Es_txt">1.57e+7</span>&nbsp;V/m
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-18" role="presentation">V<sub>s</sub> =</span>
-            <span id="Vs_txt">0.831</span>&nbsp;V
-        </p>
-    </td>
-</tr>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-19" role="presentation">Q =</span>
-            <span id="Q_txt">-0.00167</span>&nbsp;C/m²
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-20" role="presentation">n(x=0) =</span>
-            <span id="n0_txt">37.2</span>&nbsp;×&nbsp;10<sup>15</sup>&nbsp;1/cm³
-        </p>
-    </td>
-</tr>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-21" role="presentation">E<sub>ox</sub> =</span>
-            <span id="Eox_txt">4.70e+7</span>&nbsp;V/m
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-22" role="presentation">V<sub>shoot</sub> =</span>
-            <span id="Vtmp_txt">0.0000221</span>&nbsp;V
-        </p>
-    </td>
-</tr>
-
-<tr>
-    <style>
-    .margin-left {
-        margin-left: 1cm;
-    }
-</style>
-
-<style>
-    .flex-container {
-        display: flex;
-        align-items: center;
-        margin-left: 1cm;
-    }
-</style>
-
-<td>
-    <div class="flex-container">
-        <span class="math" id="MathJax-Element-23" role="presentation">$$\phi_s =$$</span>
-        <span id="phi_s_txt">5.05</span> eV
-    </div>
-</td>
-
-
-
-    <style>
-    .flex-container {
-        display: flex;
-        align-items: center;
-        margin-left: 1cm;
-    }
-</style>
-
-<td>
-    <div class="flex-container">
-        <span class="math" id="MathJax-Element-24" role="presentation">$$V_{fb} = \phi_m - \phi_s =$$</span>
-        <span id="Vfb_txt">-0.972</span> V
-    </div>
-</td>
-
-</tr>
-
-<tr><td colspan="2">&nbsp;</td></tr>
-
-<tr><td colspan="2"><p style="text-align:center">From the depletion approximation:</p></td></tr>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            max (x<sub>p</sub>) = 
-            <span id="xp_txt">0.107</span>&nbsp;μm
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            <span class="math" id="MathJax-Element-26" role="presentation">V<sub>T</sub> =</span>
-            <span id="VT_txt">0.0292</span>&nbsp;V
-        </p>
-    </td>
-</tr>
-
-<tr>
-    <td>
-        <p style="margin-left: 1cm;">
-            E<sub>s</sub> = 
-            <span id="Es0_txt">1.58e+7</span>&nbsp;V/m
-        </p>
-    </td>
-    <td>
-        <p style="margin-left: 1cm;">
-            V<sub>s</sub> = 
-            <span id="VIB0_txt">0.830</span>&nbsp;V
-        </p>
-    </td>
-</tr>
-
-</tbody></table>
-
-</td></tr><tr><td>
-
-<p style="text-align:center"><b>Charge density</b></p>
-
-<table style="margin: 0 auto;">
-    <tbody>
+  <div class="table-container">
+    <table>
+      <tbody>
         <tr>
-            <th style="text-align:center">ρ × 10<sup>-15</sup><br>[C/cm³]</th>
-            <td>
-                <div id="placeholder_rho" style="position: relative; width: 400px; height: 300px;">
-                    <canvas class="flot-base" width="400" height="300" style="position: absolute; left: 0; top: 0;"></canvas>
-                    <div class="flot-text" style="position: absolute; inset: 0; font-size: smaller; color: rgb(84, 84, 84);">
-                        <div class="flot-x-axis" style="position: absolute; inset: 0; display: block;">
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 64px; text-align: center;">0.00</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 140px; text-align: center;">0.05</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 215px; text-align: center;">0.10</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 291px; text-align: center;">0.15</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 366px; text-align: center;">0.20</div>
-                        </div>
-                        <div class="flot-y-axis" style="position: absolute; inset: 0; display: block;">
-                            <div class="flot-tick-label" style="position: absolute; top: 135px; left: 19px; text-align: right;">0</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 90px; left: 13px; text-align: right;">50</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 45px; left: 6px; text-align: right;">100</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 0; left: 6px; text-align: right;">150</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 269px; left: 2px; text-align: right;">-150</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 224px; left: 2px; text-align: right;">-100</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 179px; left: 8px; text-align: right;">-50</div>
-                        </div>
-                    </div>
-                    <canvas class="flot-overlay" width="400" height="300" style="position: absolute; left: 0; top: 0;"></canvas>
-                    <div class="legend" style="position: absolute; top: 13px; right: 19px; font-size: smaller; color: #545454;">
-                        <div style="background-color: rgba(255, 255, 255, 0.85); padding: 5px;">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="legendColorBox" style="border: 1px solid #ccc; padding: 1px;">
-                                            <div style="width: 4px; height: 0; border: 5px solid rgb(255, 0, 0); overflow: hidden;"></div>
-                                        </td>
-                                        <td class="legendLabel">n</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="legendColorBox" style="border: 1px solid #ccc; padding: 1px;">
-                                            <div style="width: 4px; height: 0; border: 5px solid rgb(0, 0, 255); overflow: hidden;"></div>
-                                        </td>
-                                        <td class="legendLabel">p</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="legendColorBox" style="border: 1px solid #ccc; padding: 1px;">
-                                            <div style="width: 4px; height: 0; border: 5px solid rgb(0, 0, 0); overflow: hidden;"></div>
-                                        </td>
-                                        <td class="legendLabel">ρ</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </td>
+          <td>
+            <p>
+              <span class="math">E<sub>g</sub> =</span>
+              <span id="Eg_txt" class="value">1.12</span>&nbsp;eV
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">n<sub>i</sub> =</span>
+              <span id="ni_txt" class="value">6.40e+9</span>&nbsp;1/cm³
+            </p>
+          </td>
         </tr>
         <tr>
-            <td></td>
-            <td style="text-align:center"><i>x</i> [μm]</td>
-        </tr>
-    </tbody>
-</table>
-
-
-</td><td>
-
-<p style="text-align:center"><b>Electric field</b></p>
-
-<table align="center">
-    <tbody>
-        <tr>
-            <th style="text-align:center">
-    <span id="MathJax-Element-32" class="mjx-chtml MathJax_CHTML" tabindex="0" role="presentation">
-       
-        <span class="MJX_Assistive_MathML" role="presentation">
-            <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>E</mi></math>
-        </span>
-    </span>
-    <script type="math/tex" id="MathJax-Element-32">E</script>
-    <br>[MV/m]
-</th>
-
-            <td>
-                <div id="placeholder_e" style="position: relative; width: 400px; height: 300px;">
-                    <canvas class="flot-base" width="400" height="300" style="position: absolute; left: 0; top: 0;"></canvas>
-                    <div class="flot-text" style="position: absolute; inset: 0; font-size: smaller; color: rgb(84, 84, 84);">
-                        <div class="flot-x-axis" style="position: absolute; inset: 0; display: block;">
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 55px; text-align: center;">0.00</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 132px; text-align: center;">0.05</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 210px; text-align: center;">0.10</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 288px; text-align: center;">0.15</div>
-                            <div class="flot-tick-label" style="position: absolute; max-width: 57px; top: 282px; left: 366px; text-align: center;">0.20</div>
-                        </div>
-                        <div class="flot-y-axis" style="position: absolute; inset: 0; display: block;">
-                            <div class="flot-tick-label" style="position: absolute; top: 269px; left: 8px; text-align: right;">0</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 215px; left: 2px; text-align: right;">10</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 161px; left: 2px; text-align: right;">20</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 108px; left: 2px; text-align: right;">30</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 54px; left: 2px; text-align: right;">40</div>
-                            <div class="flot-tick-label" style="position: absolute; top: 0; left: 2px; text-align: right;">50</div>
-                        </div>
-                    </div>
-                    <canvas class="flot-overlay" width="400" height="300" style="position: absolute; left: 0; top: 0;"></canvas>
-                </div>
-            </td>
+          <td>
+            <p>
+              <span class="math">E<sub>s</sub> =</span>
+              <span id="Es_txt" class="value">1.57e+7</span>&nbsp;V/m
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">V<sub>s</sub> =</span>
+              <span id="Vs_txt" class="value">0.831</span>&nbsp;V
+            </p>
+          </td>
         </tr>
         <tr>
-            <td></td>
-            <td style="text-align:center"><i>x</i> [μm]</td>
+          <td>
+            <p>
+              <span class="math">Q =</span>
+              <span id="Q_txt" class="value">-0.00167</span>&nbsp;C/m²
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">n(x=0) =</span>
+              <span id="n0_txt" class="value">37.2</span>&nbsp;×&nbsp;10<sup>15</sup>&nbsp;1/cm³
+            </p>
+          </td>
         </tr>
-    </tbody>
-</table>
-
+        <tr>
+          <td>
+            <p>
+              <span class="math">E<sub>ox</sub> =</span>
+              <span id="Eox_txt" class="value">4.70e+7</span>&nbsp;V/m
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">V<sub>shoot</sub> =</span>
+              <span id="Vtmp_txt" class="value">0.0000221</span>&nbsp;V
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="flex-container">
+              <span class="math">$$\phi_s =$$</span>
+              <span id="phi_s_txt" class="value">5.05</span> eV
+            </div>
+          </td>
+          <td>
+            <div class="flex-container">
+              <span class="math">$$V_{fb} = \phi_m - \phi_s =$$</span>
+              <span id="Vfb_txt" class="value">-0.972</span> V
+            </div>
+          </td>
+        </tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td colspan="2"><p class="center-text">From the depletion approximation:</p></td></tr>
+        <tr>
+          <td>
+            <p>
+              <span class="math">max (x<sub>p</sub>) =</span>
+              <span id="xp_txt" class="value">0.107</span>&nbsp;μm
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">V<sub>T</sub> =</span>
+              <span id="VT_txt" class="value">0.0292</span>&nbsp;V
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <span class="math">E<sub>s</sub> =</span>
+              <span id="Es0_txt" class="value">1.58e+7</span>&nbsp;V/m
+            </p>
+          </td>
+          <td>
+            <p>
+              <span class="math">V<sub>s</sub> =</span>
+              <span id="VIB0_txt" class="value">0.830</span>&nbsp;V
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </td></tr></tbody></table>
 

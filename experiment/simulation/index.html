@@ -378,48 +378,37 @@ function moscap() {
 
 //plot bands
      // Define data for the plot
-var data1 = [
-    { data: d3, color: "rgb(0,255,0)", shadowSize: 0, lines: { show: true }, label: "E<sub>c</sub>" },
-    { data: d1, color: "rgb(255,192,203)", shadowSize: 0, lines: { show: true }, label: "E<sub>v</sub>" },
-    { data: d2, color: "rgb(0,0,255)", shadowSize: 0, lines: { show: true }, label: "E<sub>F</sub>" }
+     var data1 = [ 
+    { data: d3, color: "rgb(255,0,0)", shadowSize: 0, lines: { show: true, lineWidth: 2 }, points: { show: true, radius: 3, fill: true, fillColor: "rgb(255,0,0)" }, label: "E<sub>c</sub>" },
+    { data: d1, color: "rgb(0,255,255)", shadowSize: 0, lines: { show: true, lineWidth: 2 }, points: { show: true, radius: 3, fill: true, fillColor: "rgb(0,255,255)" }, label: "E<sub>v</sub>" },
+    { data: d2, color: "rgb(255,165,0)", shadowSize: 0, lines: { show: true, lineWidth: 2 }, points: { show: true, radius: 3, fill: true, fillColor: "rgb(255,165,0)" }, label: "E<sub>F</sub>" }
 ];
 
 // Plot the graph
-$.plot($("#placeholder1"), data1);
+var plot = $.plot($("#placeholder1"), data1, {
+    grid: { hoverable: true, clickable: true },
+    xaxis: { axisLabel: "Voltage (V)" },
+    yaxis: { axisLabel: "Energy Levels" }
+});
 
-
-//plot charge density 
-    var data2 = [
-    {
-        data: d4,
-        color: "rgb(0,255,0)",
-        shadowSize: 0,
-        lines: { show: true },
-        label: "n"
-    },
-    {
-        data: d5,
-        color: "rgb(255,192,203)",
-        shadowSize: 0,
-        lines: { show: true },
-        label: "p"
-    },
-    {
-        data: d6,
-        color: "rgb(0, 0, 255)",
-        shadowSize: 0,
-        lines: { show: true },
-        label: "ρ"  // Use just 'ρ' instead of "$$\\rho$$"
+$("#placeholder1").bind("plothover", function (event, pos, item) {
+    if (item) {
+        $("#tooltip").html(item.series.label + "<br>V: " + item.datapoint[0].toFixed(2) + " V<br>E: " + item.datapoint[1].toFixed(2))
+            .css({ top: item.pageY + 5, left: item.pageX + 5 })
+            .fadeIn(200);
+    } else {
+        $("#tooltip").hide();
     }
-];
+});
 
-// Plotting the graph
-$.plot($("#placeholder_rho"), data2);
+$(document).ready(function () {
+    $("body").append("<div id='tooltip' style='position: absolute; display: none; border: 1px solid #ccc; background: #fff; padding: 5px; font-size: 12px;'></div>");
+});
 
 
-//plot electric field
-    var data4 = [{ data: d7, color: "rgb(0, 0, 255)", shadowSize:0, lines: {show:true}}]; 
-    $.plot($("#placeholder_e"), data4);
+
+
+
 
 MathJax.Hub.Queue(['Typeset',MathJax.Hub]);  //have Mathjax process the plot legends that were redrawn
 }
